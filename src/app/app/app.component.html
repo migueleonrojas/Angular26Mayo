@@ -1,0 +1,106 @@
+<div class="container app" id="conteinerForm">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="text-center">
+                {{ title }}
+            </h1>
+        </div>
+
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-8">
+            <h2>Registro de estudiantes</h2>
+            <form class="form-horizontal" [formGroup]="sigupForm" (ngSubmit)="enviar(sigupForm.value)">   
+
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">
+                        Nombre
+                    </label>
+                    <div class="col-sm-10">
+                        <input formControlName="nombre" type="text" class="form-control" id="name" name="name" [(ngModel)] = "model.name" placeholder="Agrega el nombre">
+                        <div class="error" *ngIf="sigupForm.get('nombre')!.hasError('required') && sigupForm.get('nombre')!.touched">Es necesario colocar el nombre</div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">
+                        Fecha de Nacimiento
+                    </label>
+                    <div class="col-sm-10">
+                        <input formControlName="f_nacimiento" type="text" class="form-control" id="name" name="dateOfBirth" [(ngModel)] = "model.dateOfBirth" placeholder="Ingresa tu fecha de nacimiento">
+                        <div class="error" *ngIf="sigupForm.get('f_nacimiento')!.hasError('required') && sigupForm.get('f_nacimiento')!.touched">Introduzca una fecha de nacimiento</div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">
+                        Ascendencia
+                    </label>
+                    <div class="col-sm-10">
+                        <input formControlName="ascendencia" type="text" class="form-control" id="name" name="ancestry" [(ngModel)] = "model.ancestry" placeholder="Ingresa tu ascendencia">
+                        <div class="error" *ngIf="sigupForm.get('ascendencia')!.hasError('required') && sigupForm.get('ascendencia')!.touched">Introduzca ascendencia</div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button [disabled]="sigupForm.invalid" type="submit" class="btn btn-success" (click)="addStudent()" (click)="addStudentLocal()">
+                            Enviar
+                        </button>
+                    </div>
+                    
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>Registros</h2>
+            <table class="table table-bordered"> 
+
+                <thead>
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Ascendencia</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let student of students; let i = index;">
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.dateOfBirth }}</td>
+                        <td>{{ student.ancestry }}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="sections">
+    <app-personaje></app-personaje>
+    <app-profesores></app-profesores>
+    <app-estudiantes></app-estudiantes>
+</div>

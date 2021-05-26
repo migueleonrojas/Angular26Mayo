@@ -1,0 +1,21 @@
+<label for="teachers">Consultar los profesores</label>
+
+<input type="button" (click)="getTeachers()" value="Consultar a los profesores">
+
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Patronus</th>
+        <th>Age</th>
+        <th>Image</th>
+    </tr>
+
+    <tr *ngFor="let profesor of profesores; let i = index">
+        <td> {{profesor.name}}</td>
+        <td> {{profesor.patronus}}</td>
+        <td> {{ profesor.yearOfBirth == "" ? "" : 2021 - profesor.yearOfBirth}}</td>
+        <td> <img src={{profesor.image}} height="40" width="40"></td>
+    </tr>
+
+</table>

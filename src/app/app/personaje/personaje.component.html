@@ -1,0 +1,33 @@
+<label for="house">Elige tu casa</label>
+
+<select name="selectHouse" id="selectHouse" (change)="getCharacters($event)">
+    <option value= "">Selecciona tu casa</option>
+    <option value= "slytherin">Slytherin</option>
+    <option value= "gryffindor">Gryffindor</option>
+    <option value= "ravenclaw">Ravenclaw</option>
+    <option value= "hufflepuff">Hufflepuff</option>
+
+</select>
+
+
+
+
+<table>
+
+    <tr>
+        <th>Name</th>
+        <th>Patronus</th>
+        <th>Age</th>
+        <th>Image</th>
+    </tr>
+
+    <tr *ngFor="let personaje of personajes; let i = index">
+        <td> {{personaje.name}}</td>
+        <td> {{personaje.patronus}}</td>
+        <td> {{  personaje.yearOfBirth == "" ? "" : 2021 - personaje.yearOfBirth }}</td>
+        <td> <img src={{personaje.image}} height="40" width="40"></td>
+    </tr>
+
+</table>
+
+

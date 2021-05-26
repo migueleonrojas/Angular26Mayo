@@ -1,0 +1,72 @@
+#conteinerForm{
+    background-color: rgb(2, 78, 122);
+    margin-bottom: 20px;
+}
+.app{
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 30px;
+    background: #fff;
+
+}
+
+.error{
+    font-size: 14px;
+    color: rgb(207, 183, 131);
+    margin: 5px;
+}
+
+app-solicitud-estudiante{
+    width: 600px;
+    height: 400px;
+    background-color: rgb(127, 170, 157);
+}
+
+.sections{
+    
+    margin: auto;
+    width: 1050px;
+    height: 600px;
+    
+}
+
+app-personaje{
+    padding: 20px;
+    float: left;
+    margin-right:5px;
+    background-color: aqua;
+    
+}
+
+app-profesores{
+    padding: 20px;
+    float: left;
+    margin-right:5px;
+    background-color: rgb(57, 187, 148);
+    
+}
+
+app-estudiantes{
+
+    padding: 20px;
+    float: left;
+    background-color: rgb(72, 139, 83);
+}
+
+@media only screen and (max-width: 1065px) {
+    app-personaje, app-profesores, app-estudiantes {
+        margin-bottom: 5px;
+        display: block;
+        width: 90vw;
+    }
+  }
+
+  @media only screen and (max-width: 685px) {
+    app-personaje, app-profesores, app-estudiantes {
+        margin-bottom: 5px;
+        display: block;
+        width: 100%;
+        margin-right: 5px;
+    }
+  }
