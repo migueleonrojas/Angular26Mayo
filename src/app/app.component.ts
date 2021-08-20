@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Estudiante } from './estudiante.model';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -7,84 +8,82 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  {
 
-  title:String = 'Escuela Hogwarts';
-
-  students = [
-
-    { 
-      'name': 'Harry Potter',
-      'dateOfBirth' : '31-07-1980',
-      'ancestry': 'half-blood'
-    }
-
-    
-  ];
-
-  model:any = {};
-
-  addStudent():void{
-
-    this.students.push(this.model);
-
-  }
-
-  showStudents(){
-
-
-  }
-
+  signupForm: FormGroup;
+  
   constructor(
-    private builder :FormBuilder
+    private builder: FormBuilder
   ){
 
-    this.sigupForm = this.builder.group({
+    this.signupForm = this.builder.group({
 
-      nombre: [ '', Validators.required ],
-      f_nacimiento: [ '', Validators.required ],
-      ascendencia : [ '', Validators.required ]
+      nombreInput:[ '', Validators.required ],
+      fechaInput:[ '', Validators.required ],
+      ascendenciaInput:[ '', Validators.required ]
 
-      }
+    })
 
-    )
-
+    this.getEmpleados();
   }
 
+  
+
+  
+  titulo = 'Ingresando a los estudiantes en el listado';
+  estudiantes: Estudiante[] =[];
+
+
+  getEmpleados(){
+
+    if(localStorage.getItem("dataSource") === null){
+
+      this.estudiantes = [];
+
+    }
+    else{
+
+     this.estudiantes =  JSON.parse(localStorage.getItem('dataSource') || '{}')
+
+    }
+
+    return this.estudiantes;
+
+  }
+  
+  /*empleados: Empleado[] =[
+
+    new Empleado("Miguel", "Leon", "Desarrollador Front End", 700),
+    new Empleado("Gabriel", "Monasterios", "Mecanico", 1000),
+    new Empleado("Deymar", "Rojas", "Modelo", 1700),
+    new Empleado("Carlos", "Nemo", "Electricista", 600),
+    new Empleado("Maria", "Socas", "Desarrollador Front End", 3000),
+
+    
+
+  ];*/
+
+  ingresarEstudiante(nombre:string, fecha:string, ascendencia:string){
+
+    this.estudiantes.push(new Estudiante(nombre, fecha, ascendencia ) );
+
+    localStorage.setItem('dataSource', JSON.stringify(this.estudiantes));
+
+    this.signupForm.reset();
+    
+  }
+
+  
+    
   enviar(values:any){
 
     console.log(values);
-  }
-
-  sigupForm: FormGroup;
-
-
-  getStudentLocal(){
-
-    let nombre = localStorage.getItem("nombre");
-    let studentIn = localStorage.getItem("studentInLocal");
-
-    console.log(studentIn);
 
   }
+  
 
-  addStudentLocal(){
 
-    let nombre: string = "Miguel";
 
-    let studentInLocal = {
 
-      nombre: 'Miguel',
-      dateB: '22-06-1994',
-      asc: 'half-blood'
-      
-    }
-
-    localStorage.setItem("nombre", nombre);
-
-    localStorage.setItem("persona", JSON.stringify( studentInLocal )  );
-
-    this.getStudentLocal();
-  }
 
 }
